@@ -1,3 +1,10 @@
+# Red Badger Developer Programming Problem
+
+## About
+
+This project is a submission to Red Badger in response to the "Martian Robots" developer
+programming problem, by Danny Lee (dannyl33@gmail.com).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
