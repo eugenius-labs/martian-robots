@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CommandInput extends React.Component {
+class CommandForm extends React.Component {
 
     state = { command: '', planetDimensions: '' };
 
@@ -32,4 +32,4 @@ class CommandInput extends React.Component {
     };
 }
 
-export default CommandInput;
+export default CommandForm;

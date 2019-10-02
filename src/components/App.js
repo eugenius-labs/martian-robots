@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CommandForm from './CommandForm/CommandForm';
+import ResponseForm from './ResponseForm/ResponseForm';
 class App extends React.Component {
 
     state = { command: '', planetDimensions: '' };
@@ -15,8 +16,7 @@ class App extends React.Component {
             <div className="ui container">
                 <h1>Martian Robots</h1>
                 <CommandForm onSubmit={this.onCommanderSubmit}/>
-                <div>{this.state.planetDimensions}</div>
-                <div>{this.state.command}</div>
+                <ResponseForm command={this.state.command} planetDimensions={this.state.planetDimensions}/>
             </div>
         );
     };
