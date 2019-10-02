@@ -5,6 +5,15 @@
 This project is a submission to Red Badger in response to the "Martian Robots" developer
 programming problem, by Danny Lee (dannyl33@gmail.com).
 
+## Running Martian Robots
+
+Clone this repo, navigate to the project root and run the following commands in your Terminal window:
+
+`npm install`
+`npm start`
+
+Open http://localhost:3000 to view it in the browser.
+
 ## To Do
 
 * Add proper validation to Planet Dimensions and Command fields
