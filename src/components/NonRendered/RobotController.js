@@ -27,6 +27,10 @@ class RobotController {
                     if (robotX > -1 && robotY > -1 && robotOrientation.length > 0){
                         this.liveRobot = new Robot(robotX,robotY,robotOrientation);
                         console.log("Releasing robot at " + this.liveRobot.PosX + ":" + this.liveRobot.PosY + ":" + this.liveRobot.Orientation);
+                        let robotInstructions = robotCommandParts[1].split('');
+                        for (let j=0; j<robotInstructions.length; j++){
+                            this.moveRobot(robotInstructions[j]);
+                        }
                         this.robots.push(this.liveRobot);
                     }
                     else{
@@ -42,6 +46,92 @@ class RobotController {
         else{
             this.invalidCommand = true;
         }
+    }
+
+    moveRobot(command){
+
+        if (command === "F"){
+            console.log("Moving forward");
+
+            switch (this.liveRobot.Orientation){
+                case "N":
+                    if (this.planet.Height >= (this.liveRobot.PosY + 1)){
+                        this.liveRobot.PosY++;
+
+                    }
+                    else{
+                        this.liveRobot.Lost = true;
+                    }
+                    break;
+                case "S":
+                    if (this.liveRobot.PosY > 0){
+                        this.liveRobot.PosY--;
+                    }
+                    else{
+                        this.liveRobot.Lost = true;
+                    }
+                    break;
+                case "E":
+                    if (this.planet.Width >= (this.liveRobot.PosX + 1)){
+                        this.liveRobot.PosX++;
+                    }
+                    else{
+                        this.liveRobot.Lost = true;
+                    }
+                    break;
+                case "W":
+                    if (this.liveRobot.PosX > 0){
+                        this.liveRobot.PosX--;
+                    }
+                    else{
+                        this.liveRobot.Lost = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (command === "L"){
+            console.log("Turning left");
+            let currentOrientation = this.liveRobot.Orientation;
+            switch (currentOrientation){
+                case "N":
+                    this.liveRobot.Orientation = "W";
+                    break;
+                case "S":
+                    this.liveRobot.Orientation = "E";
+                    break;
+                case "E":
+                    this.liveRobot.Orientation = "N";
+                    break;
+                case "W":
+                    this.liveRobot.Orientation = "S";
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (command === "R"){
+            console.log("Turning right");
+            let currentOrientation = this.liveRobot.Orientation;
+            switch (currentOrientation){
+                case "N":
+                    this.liveRobot.Orientation = "E";
+                    break;
+                case "S":
+                    this.liveRobot.Orientation = "W";
+                    break;
+                case "E":
+                    this.liveRobot.Orientation = "S";
+                    break;
+                case "W":
+                    this.liveRobot.Orientation = "N";
+                    break;
+                default:
+                    break;
+            }
+        }
+        console.log("Command " + command + " New Position" + this.liveRobot.PosX + ":" + this.liveRobot.PosY + ":" + this.liveRobot.Orientation);
     }
 
 
