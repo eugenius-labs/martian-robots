@@ -5,6 +5,13 @@
 This project is a submission to Red Badger in response to the "Martian Robots" developer
 programming problem, by Danny Lee (dannyl33@gmail.com).
 
+## To Do
+
+* Add proper validation to Planet Dimensions and Command fields
+* Add snapshot testing for rendered components
+
+## React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
