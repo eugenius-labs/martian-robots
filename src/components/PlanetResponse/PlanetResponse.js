@@ -1,8 +1,8 @@
 import React from 'react';
-import RobotController from '../NonRendered/RobotController';
-import Planet from '../NonRendered/Planet';
+import RobotController from '../PlanetLogic/RobotController';
+import Planet from '../PlanetLogic/Planet'; 
 
-class ResponseForm extends React.Component {
+class PlanetResponse extends React.Component {
 
     constructor(props){
         super(props);
@@ -54,4 +54,4 @@ class ResponseForm extends React.Component {
     };
 }
 
-export default ResponseForm;
+export default PlanetResponse;
