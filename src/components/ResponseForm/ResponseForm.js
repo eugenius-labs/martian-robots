@@ -1,4 +1,6 @@
 import React from 'react';
+import RobotController from '../NonRendered/RobotController';
+import Planet from '../NonRendered/Planet';
 
 class ResponseForm extends React.Component {
 
@@ -15,9 +17,15 @@ class ResponseForm extends React.Component {
         const planetWidth = parseInt(dims[0]);
         const planetHeight = parseInt(dims[1]);
         if (planetWidth > 0 && planetHeight > 0){
-            const positions = "VALID INPUT";
-            if (this.props.command.length > 0 && this.state.positions !== positions){
-                this.setState({positions: positions});
+            const planet = new Planet(planetWidth,planetHeight);
+            const robotController = new RobotController(planet);
+            if (this.props.command.length > 0 && this.state.command !== this.props.command){
+                this.setState({command: this.props.command});
+                robotController.releaseRobots(this.props.command);
+                const positions = robotController.locateRobots();
+                if (this.state.positions !== positions){
+                    this.setState({positions: positions});
+                }
             }
         }
         else{
