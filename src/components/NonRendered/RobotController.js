@@ -1,5 +1,7 @@
 import Robot from './Robot';
-import Scent from './Scent';
+import RobotCommanderF from './RobotCommanderF';
+import RobotCommanderL from './RobotCommanderL';
+import RobotCommanderR from './RobotCommanderR';
 
 class RobotController {
 
@@ -51,103 +53,22 @@ class RobotController {
 
     moveRobot(command){
         if (!this.liveRobot.Lost){
-            if (command === "F"){
-                console.log("Moving forward");
-                switch (this.liveRobot.Orientation){
-                    case "N":
-                        if (this.planet.Height >= (this.liveRobot.PosY + 1)){
-                            this.liveRobot.PosY++;
-
-                        }
-                        else{
-                            if (!this.planet.hasScentAt(this.liveRobot.PosX,this.liveRobot.PosY)){
-                                this.liveRobot.Lost = true;
-                            }
-                        }
-                        break;
-                    case "S":
-                        if (this.liveRobot.PosY > 0){
-                            this.liveRobot.PosY--;
-                        }
-                        else{
-                            if (!this.planet.hasScentAt(this.liveRobot.PosX,this.liveRobot.PosY)){
-                                this.liveRobot.Lost = true;
-                            }
-                        }
-                        break;
-                    case "E":
-                        if (this.planet.Width >= (this.liveRobot.PosX + 1)){
-                            this.liveRobot.PosX++;
-                        }
-                        else{
-                            if (!this.planet.hasScentAt(this.liveRobot.PosX,this.liveRobot.PosY)){
-                                this.liveRobot.Lost = true;
-                            }
-                        }
-                        break;
-                    case "W":
-                        if (this.liveRobot.PosX > 0){
-                            this.liveRobot.PosX--;
-                        }
-                        else{
-                            if (!this.planet.hasScentAt(this.liveRobot.PosX,this.liveRobot.PosY)){
-                                this.liveRobot.Lost = true;
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                if (this.liveRobot.Lost){ 
-                    // Add scent
-                    this.planet.addScent(new Scent(this.liveRobot.PosX,this.liveRobot.PosY));
-                }
+            
+            if (command === "F"){ 
+                let robotCommmander = new RobotCommanderF(this.liveRobot,this.planet);
+                robotCommmander.Command();
             }
             else if (command === "L"){
-                console.log("Turning left");
-                let currentOrientation = this.liveRobot.Orientation;
-                switch (currentOrientation){
-                    case "N":
-                        this.liveRobot.Orientation = "W";
-                        break;
-                    case "S":
-                        this.liveRobot.Orientation = "E";
-                        break;
-                    case "E":
-                        this.liveRobot.Orientation = "N";
-                        break;
-                    case "W":
-                        this.liveRobot.Orientation = "S";
-                        break;
-                    default:
-                        break;
-                }
+                let robotCommander = new RobotCommanderL(this.liveRobot,this.planet);
+                robotCommander.Command();
             }
             else if (command === "R"){
-                console.log("Turning right");
-                let currentOrientation = this.liveRobot.Orientation;
-                switch (currentOrientation){
-                    case "N":
-                        this.liveRobot.Orientation = "E";
-                        break;
-                    case "S":
-                        this.liveRobot.Orientation = "W";
-                        break;
-                    case "E":
-                        this.liveRobot.Orientation = "S";
-                        break;
-                    case "W":
-                        this.liveRobot.Orientation = "N";
-                        break;
-                    default:
-                        break;
-                }
+                let robotCommander = new RobotCommanderR(this.liveRobot,this.planet);
+                robotCommander.Command();
             }
         }
         console.log("Command " + command + " New Position" + this.liveRobot.PosX + ":" + this.liveRobot.PosY + ":" + this.liveRobot.Orientation);
     }
-
-
 
     locateRobots(){
         if (this.invalidCommand){
